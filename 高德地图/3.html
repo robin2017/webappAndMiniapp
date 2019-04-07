@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.14&key=8c77b51151f79d3fc604b11639cd8672"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            height: 100%;
+            width: 90%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+
+
+
+    var map = new AMap.Map('container', {
+        zoom: 4,//初始地图级别，zoom越大，比例尺越小
+        center: [120, 30],//初始化地图中心点
+    });
+    console.log(map.getZoom());//11
+    console.log(map.getCenter().toString);//120,30
+    setTimeout(function () {
+        //设置层级
+        map.setZoom(15)
+    },5000);
+    map.on('moveend', function () {
+        //移动结束时
+        console.log('moveend:');
+        console.log(map.getZoom());
+        console.log(map.getCenter());
+    });
+    map.on('zoomend', function () {
+        //移动不会触发，只有级别发生变化时触发
+        console.log('zoomend:');
+        console.log(map.getZoom());
+        console.log(map.getCenter());
+    })
+
+
+</script>
+</body>
+</html>
